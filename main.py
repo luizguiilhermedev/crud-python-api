@@ -51,4 +51,8 @@ def deletar_produto(id_procurado: int):
                 removido = produtos.pop(index)
                 return {"mensagem": f"O item {removido['nome']} foi removido."}
         
-        raise HTTPException(status_code=404, detail="Produto não encontrado
+        raise HTTPException(status_code=404, detail="Produto não encontrado")
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail="Erro inesperado ao deletar")
